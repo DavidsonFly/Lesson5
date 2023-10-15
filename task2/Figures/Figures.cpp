@@ -1,0 +1,197 @@
+﻿// Figures.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+//
+
+#include <iostream>
+
+
+class Triangle
+{
+protected:
+    double a, b, c;
+    double A, B, C;
+
+public:
+    Triangle(double sideA, double sideB, double sideC, double angleA, double angleB, double angleC)
+    :a(sideA), b(sideB), c(sideC), A(angleA), B(angleB), C(angleC){}
+
+    double getA() { return A; }
+    double getB() { return B; }
+    double getC() { return C; }
+
+    void print()
+    {
+        std::cout << "Треугольник:" << std::endl;
+        std::cout << "Стороны: " << "a = " << a << " " << "b = " << b << " " << "c = " << c << std::endl;
+        std::cout << "Углы: " << "A = " << A << " " << "B = " << B << " " << "C = " << C << std::endl;
+    }
+
+};
+
+class RightTriangle : public Triangle {
+public:
+    RightTriangle(double sideA, double sideB, double sideC)
+        : Triangle(sideA, sideB, sideC, 50.0, 60.0, 90.0) {}
+
+
+    void print()
+    {
+        std::cout << "Прямоугольный треугольник:" << std::endl;
+        std::cout << "Стороны: " << "a = " << a << " " << "b = " << b << " " << "c = " << c << std::endl;
+        std::cout << "Углы: " << "A = " << A << " " << "B = " << B << " " << "C = " << C << std::endl;
+    }
+};
+
+class Identical_triangle : public Triangle
+{
+public:
+    Identical_triangle(double base,double identSide)
+        :Triangle(identSide,identSide, base, 50.0, 60.0, 70.0){}
+
+    void print()
+    {
+        std::cout << "Равнобедренный треугольник:" << std::endl;
+        std::cout << "Стороны: " << "a = " << a << " " << "b = " << b << " " << "c = " << c << std::endl;
+        std::cout << "Углы: " << "A = " << A << " " << "B = " << B << " " << "C = " << C << std::endl;
+    }
+};
+
+class Equal_triangle : public Triangle
+{
+public:
+    Equal_triangle(double equalSide)
+        :Triangle(equalSide,equalSide,equalSide, 60.0, 60.0, 60.0){}
+
+    void print()
+    {
+        std::cout << "Равноcторонний треугольник:" << std::endl;
+        std::cout << "Стороны: " << "a = " << a << " " << "b = " << b << " " << "c = " << c << std::endl;
+        std::cout << "Углы: " << "A = " << A << " " << "B = " << B << " " << "C = " << C << std::endl;
+    }
+};
+
+class Quadrilateral
+{
+protected:
+    double a, b, c, d;
+    double A, B, C, D;
+
+public:
+    Quadrilateral(double sideA, double sideB, double sideC, double sideD, double angleA, double angleB, double angleC, double angleD)
+        :a(sideA), b(sideB), c(sideC), d(sideD), A(angleA), B(angleB), C(angleC), D(angleD){}
+
+    double getA() { return A;}
+    double getB() { return B;}
+    double getC() { return C;}
+    double getD() { return D;}
+
+    void print()
+    {
+        std::cout << "Четырехугольник:" << std::endl;
+        std::cout << "Стороны: " << "a = " << a << " " << "b = " << b << " " << "c = " << c <<" " << "d = " << d << std::endl;
+        std::cout << "Углы: " << "A = " << A << " " << "B = " << B << " " << "C = " << C << " " << "D = " << D << std::endl;
+           
+    }
+};
+
+class Rectangle :public Quadrilateral
+{
+public:
+    Rectangle(double sideA, double sideB)
+        :Quadrilateral(sideA, sideB, sideA, sideB, 90.0, 90.0, 90.0, 90.0){}
+
+        void print()
+    {
+        std::cout << "Прямоугольник:" << std::endl;
+        std::cout << "Стороны: " << "a = " << a << " " << "b = " << b << " " << "c = " << c << " " << "d = " << d << std::endl;
+        std::cout << "Углы: " << "A = " << A << " " << "B = " << B << " " << "C = " << C << " " << "D = " << D << std::endl;
+
+    }
+};
+
+class Square :public Rectangle
+{
+public:
+    Square(double side)
+        :Rectangle(side,side){}
+
+    void print()
+    {
+        std::cout << "Квадрат:" << std::endl;
+        std::cout << "Стороны: " << "a = " << a << " " << "b = " << b << " " << "c = " << c << " " << "d = " << d << std::endl;
+        std::cout << "Углы: " << "A = " << A << " " << "B = " << B << " " << "C = " << C << " " << "D = " << D << std::endl;
+    }
+};
+
+class Parallelogramm :public Quadrilateral
+{
+public:
+    Parallelogramm(double sideA, double sideB, double angleA, double angleB)
+        :Quadrilateral(sideA, sideB, sideA, sideB, angleA, angleB, 180.0 - angleA, 180.0 - angleB) {}
+
+    void print()
+    {
+        std::cout << "Параллелограмм:" << std::endl;
+        std::cout << "Стороны: " << "a = " << a << " " << "b = " << b << " " << "c = " << c << " " << "d = " << d << std::endl;
+        std::cout << "Углы: " << "A = " << A << " " << "B = " << B << " " << "C = " << C << " " << "D = " << D << std::endl;
+    }
+};
+
+class Rhombus :public Parallelogramm
+{
+public:
+    Rhombus(double side, double angle)
+        :Parallelogramm(side,side, angle,angle){}
+
+    void print()
+    {
+        std::cout << "Ромб:" << std::endl;
+        std::cout << "Стороны: " << "a = " << a << " " << "b = " << b << " " << "c = " << c << " " << "d = " << d << std::endl;
+        std::cout << "Углы: " << "A = " << A << " " << "B = " << B << " " << "C = " << C << " " << "D = " << D << std::endl;
+    }
+};
+int main()
+{
+    setlocale(LC_ALL, "Rus");
+    Triangle triangle(10.0, 20.0, 30.0, 50.0, 60.0, 70.0);
+    RightTriangle right_triangle(10.0, 20.0, 30.0);
+    Identical_triangle ident_triangle(10.0, 20.0);
+    Equal_triangle equal_triangle(30.0);
+
+    Quadrilateral quadri(10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0);
+    Rectangle rec(10.0, 40.0);
+    Square square(10.0);
+    Parallelogramm paral(20.0, 30.0, 60.0, 50.0);
+    Rhombus romb(40.0, 40.0);
+    
+    triangle.print();
+    std::cout << std::endl;
+    right_triangle.print();
+    std::cout << std::endl;
+    ident_triangle.print();
+    std::cout << std::endl;
+    equal_triangle.print();
+    std::cout << std::endl;
+
+    quadri.print();
+    std::cout << std::endl;
+    rec.print();
+    std::cout << std::endl;
+    square.print();
+    std::cout << std::endl;
+    paral.print();
+    std::cout << std::endl;
+    romb.print();
+    
+    return 0;
+}
+
+// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
+// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
+
+// Советы по началу работы 
+//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
+//   2. В окне Team Explorer можно подключиться к системе управления версиями.
+//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
+//   4. В окне "Список ошибок" можно просматривать ошибки.
+//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
+//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
